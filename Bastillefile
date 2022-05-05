@@ -1,13 +1,14 @@
-ARG psql-version=12
-ARG odoo-version=15.0
-
 PKG nginx
 
 #CP root /
 
+CMD mkdir -p /usr/local/etc/git_config/nginx
 
 MOUNT /usr/ports usr/ports nullfs ro 0 0 
-MOUNT /werzel/server_config/nginx usr/local/etc/nginx/ nullfs ro 0 0
+MOUNT /werzel/server_config/nginx usr/local/etc/git_config/nginx/ nullfs ro 0 0
+
+# Link Configurations from /usr/local/etc/nginx/conf.d to /usr/local/etc/git_config/nginx/conf.d/
+CMD ln -s /usr/local/etc/nginx/sites.d/proxy.conf /usr/local/etc/git_config/nginx/proxy.conf
 
 SYSRC nginx_enable=YES
 
