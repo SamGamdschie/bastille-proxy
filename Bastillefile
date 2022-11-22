@@ -1,4 +1,4 @@
-PKG nginx
+PKG htop nginx
 
 #CP root /
 
