@@ -12,6 +12,11 @@ MOUNT /werzel/server_config/nginx usr/local/etc/git_config/nginx nullfs ro 0 0
 CMD rm -rf /usr/local/etc/nginx/nginx.conf
 CMD ln -s /usr/local/etc/git_config/nginx/proxy.conf /usr/local/etc/nginx/nginx.conf
 
+# Set cache folder
+CMD mkdir -p /var/cache/nginx/
+CMD mkdir -p /var/cache/nginx/tmp
+CMD chown -R www:www /var/cache/nginx/
+
 SYSRC nginx_enable=YES
 
 RDR tcp 80 80
